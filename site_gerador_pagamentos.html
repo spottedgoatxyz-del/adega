@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerador de Links de Pagamento Kiwify</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 450px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 15px;
+      display: block;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #4CAF50;
+      border: none;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .resultado {
+      margin-top: 20px;
+      font-size: 16px;
+      word-break: break-all;
+    }
+    .resultado a {
+      color: #0077cc;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Gerador de Link de Pagamento</h2>
+
+    <label>Seu link base da Kiwify:</label>
+    <input id="base" type="text" placeholder="Ex: https://pay.kiwify.com.br/SEULINK" />
+
+    <label>Valor a cobrar (R$):</label>
+    <input id="valor" type="number" placeholder="Ex: 150" />
+
+    <button onclick="gerarLink()">Gerar Link</button>
+
+    <div id="resultado" class="resultado"></div>
+  </div>
+
+  <script>
+    function gerarLink() {
+      const base = document.getElementById("base").value.trim();
+      const valor = document.getElementById("valor").value.trim();
+      const resultado = document.getElementById("resultado");
+
+      if (!base || !valor) {
+        resultado.innerHTML = "⚠️ Preencha todos os campos!";
+        return;
+      }
+
+      const linkFinal = `${base}?price=${valor}`;
+
+      resultado.innerHTML = `✔ Link gerado:<br><a href="${linkFinal}" target="_blank">${linkFinal}</a>`;
+    }
+  </script>
+</body>
+</html>
